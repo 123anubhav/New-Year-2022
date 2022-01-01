@@ -1,0 +1,223 @@
+<!-- Created by Kode Krasher -->
+
+<!DOCTYPE html>
+<!--
+
+Happy New Year!!!
+
+With Love From anubhav!
+😎👍
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy New Year!</title>
+
+  <style>
+    html,
+    body,
+    #bubbles {
+      font-family: sans-serif;
+      height: 100vh;
+      margin: auto;
+      padding: 0;
+      width: 100vw;
+    }
+
+    body {
+      background-image: url('https://cdn.dribbble.com/users/1277402/screenshots/5986513/fireworks.gif');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      overflow: hidden;
+      position: fixed;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .bubble {
+      background: hotpink;
+      background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 220, .7) 0%, transparent 100%);
+      background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 220, .7) 0%, transparent 100%);
+      background-image: -o-linear-gradient(-45deg, rgba(255, 255, 220, .7) 0%, transparent 100%);
+      border: purple solid 1px;
+      border-radius: 100vmin;
+      color: gold;
+      font-size: 5vmin;
+      height: 20vmin;
+      line-height: 20vmin;
+      position: fixed;
+      text-align: center;
+      text-shadow:
+        .2vmin .2vmin 2vmin crimson,
+        -.2vmin -.2vmin 2vmin crimson;
+      width: 20vmin;
+    }
+
+    .x0 {
+      left: calc(100vw*0.001);
+      opacity: 0.47;
+      transform: scale(0.7);
+    }
+
+    .x1 {
+      left: calc(100vw*0.1);
+      opacity: 0.35;
+      transform: scale(0.9);
+    }
+
+    .x2 {
+      left: calc(100vw*0.2);
+      opacity: 0.57;
+      transform: scale(0.6);
+    }
+
+    .x3 {
+      left: calc(100vw*0.3);
+      opacity: 0.47;
+      transform: scale(0.7);
+    }
+
+    .x4 {
+      left: calc(100vw*0.4);
+      opacity: 0.67;
+      transform: scale(0.5);
+    }
+
+    .x5 {
+      left: calc(100vw*0.5);
+      opacity: 0.40;
+      transform: scale(0.8);
+    }
+
+    .x6 {
+      left: calc(100vw*0.6);
+      opacity: 0.57;
+      transform: scale(0.6);
+    }
+
+    .x7 {
+      left: calc(100vw*0.7);
+      opacity: 0.40;
+      transform: scale(0.8);
+    }
+
+    .x8 {
+      left: calc(100vw*0.8);
+      opacity: 0.67;
+      transform: scale(0.5);
+    }
+
+    .x9 {
+      left: calc(100vw*0.83);
+      opacity: 0.40;
+      transform: scale(0.5);
+    }
+
+    #bubbles {
+      padding: 100vw 0
+    }
+
+    #pause {
+      bottom: 3vh;
+      font-size: 7vmin;
+      left: 3vw;
+      opacity: 0.5;
+      position: fixed;
+      width: fit-content;
+      z-index: 7;
+    }
+
+    #text {
+      bottom: 50vh;
+      color: orchid;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-size: 7vmin;
+      font-weight: 900;
+      left: 42vw;
+      margin: auto;
+      opacity: 0.5;
+      position: fixed;
+      text-align: right;
+    }
+
+    @keyframes moveBubbles {
+      0% {
+        top: 100vh;
+      }
+
+      100% {
+        top: -120vh;
+      }
+    }
+
+    @keyframes sideWays {
+      0% {
+        margin-left: -7vw;
+      }
+
+      100% {
+        margin-left: 7vw;
+      }
+    }
+
+    /*
+animated bubbles inspired by: 
+https://stackoverflow.com/questions/13953053/animate-bubbles-upwards-continuously-with-css3 
+*/
+  </style>
+</head>
+
+<body>
+
+  <script>
+    init = () => {
+      function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+
+      const HappyNewYear = document.body.innerHTML = `
+<span id="text"> Happy New Year! </span>
+<div id="pause">▶️</div>`;
+      let song = 'https://www.dropbox.com/s/0bylixfdwylsoyu/Auld%20lang%20Syne%20%20Rock%20version.mp3?raw=1';
+      let audio = new Audio(song);
+      audio.loop = true;
+      const playAudio = () => {
+        audio.paused ? audio.play() : audio.pause();
+        audio.paused ? pause.innerText = "▶️" : pause.innerText = '⏸';
+      }
+      const createBubbles = document.createElement('div');
+      createBubbles.setAttribute('id', 'bubbles');
+      document.body.appendChild(createBubbles);
+      let bubbles = document.getElementById('bubbles');
+      let bubble = '';
+
+      for (let i = 0; i < 10;) {
+        seconds = randomNumber(7, 30);
+        bubble =
+          `<div 
+class="bubble x${i}" 
+id="x${i}"
+style="animation: moveBubbles ${seconds}s linear infinite, 
+sideWays 5s ease-in-out infinite alternate;"
+>2022</div>
+`;
+        bubbles.innerHTML += bubble;
+        i++;
+      }
+
+      pause.addEventListener(
+        (
+          'ontouchstart' in window ?
+          'touchend' : 'click'
+        ),
+        playAudio);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+
+</html>
